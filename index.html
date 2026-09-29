@@ -1,0 +1,2953 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>War at the End</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #05070a;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 75px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background: rgba(5, 7, 10, 0.85);
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid #1b2633;
+
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .navbar nav {
+            display: flex;
+            gap: 35px;
+        }
+
+        .navbar nav a {
+            color: #8d99a8;
+            text-decoration: none;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .navbar nav a:hover {
+            color: #1683ff;
+        }
+
+        /* =========================
+           PAGE SYSTEM
+        ========================= */
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+
+            padding: 120px 10% 80px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            right: -150px;
+            top: 100px;
+
+            background: #1683ff;
+
+            opacity: 0.08;
+
+            filter: blur(100px);
+
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 800px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .small-title {
+            color: #1683ff;
+
+            font-size: 12px;
+
+            letter-spacing: 4px;
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(60px, 9vw, 130px);
+
+            line-height: 0.85;
+
+            font-weight: 800;
+
+            letter-spacing: -5px;
+
+            margin-bottom: 35px;
+        }
+
+        .hero-description {
+            max-width: 550px;
+
+            color: #8d99a8;
+
+            line-height: 1.8;
+
+            font-size: 15px;
+
+            margin-bottom: 40px;
+        }
+
+        .main-button {
+            display: inline-block;
+
+            padding: 15px 25px;
+
+            color: #ffffff;
+
+            background: #1683ff;
+
+            border: none;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .main-button:hover {
+            background: #ffffff;
+            color: #05070a;
+            transform: translateY(-3px);
+        }
+
+        .hero-line {
+            position: absolute;
+
+            bottom: 50px;
+            left: 10%;
+
+            width: 80%;
+
+            height: 1px;
+
+            background: #1b2633;
+        }
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        .section {
+            padding: 120px 10%;
+
+            border-top: 1px solid #111820;
+        }
+
+        .section-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+            margin-bottom: 60px;
+        }
+
+        .section-title span {
+            color: #1683ff;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+        .section-title h2 {
+            font-size: 30px;
+
+            letter-spacing: 2px;
+        }
+
+        /* =========================
+           FORMAT
+        ========================= */
+
+        .format-container {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+        .format-card {
+            min-height: 190px;
+
+            padding: 30px;
+
+            border: 1px solid #1b2633;
+
+            background: #080c11;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            transition: 0.3s;
+        }
+
+        .format-card.active {
+            cursor: pointer;
+        }
+
+        .format-card.active:hover {
+            border-color: #1683ff;
+
+            transform: translateY(-5px);
+        }
+
+        .format-card.disabled {
+            opacity: 0.45;
+        }
+
+        .format-number {
+            color: #1683ff;
+
+            font-size: 11px;
+        }
+
+        .format-card h3 {
+            font-size: 20px;
+
+            margin-bottom: 8px;
+        }
+
+        .format-card p {
+            color: #707c89;
+
+            font-size: 12px;
+        }
+
+        .arrow {
+            align-self: flex-end;
+
+            color: #1683ff;
+
+            font-size: 20px;
+        }
+
+        /* =========================
+           SYNOPSIS
+        ========================= */
+
+        .synopsis {
+            max-width: 850px;
+        }
+
+        .synopsis p {
+            color: #a4adb8;
+
+            font-size: 16px;
+
+            line-height: 1.9;
+
+            margin-bottom: 25px;
+        }
+
+        .synopsis strong {
+            color: #ffffff;
+        }
+
+        .synopsis-ending {
+            color: #1683ff;
+
+            font-size: 22px;
+
+            letter-spacing: 2px;
+
+            margin: 40px 0;
+        }
+
+        .story-title {
+            color: #ffffff !important;
+
+            margin-top: 50px;
+        }
+
+        /* =========================
+           CHARACTERS
+        ========================= */
+
+        .character-container {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .character-card {
+            background: #080c11;
+
+            border: 1px solid #1b2633;
+
+            transition: 0.3s;
+        }
+
+        .character-card:hover {
+            border-color: #1683ff;
+
+            transform: translateY(-5px);
+        }
+
+        .character-image {
+            height: 330px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #0d1218;
+
+            color: #303b48;
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+        }
+
+        .character-info {
+            padding: 20px;
+        }
+
+        .character-info p {
+            color: #1683ff;
+
+            font-size: 10px;
+
+            margin-bottom: 10px;
+        }
+
+        .character-info h3 {
+            font-size: 16px;
+
+            margin-bottom: 8px;
+        }
+
+        .character-info span {
+            color: #697583;
+
+            font-size: 9px;
+
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about-section {
+            min-height: 500px;
+        }
+
+        .about-content {
+            max-width: 650px;
+        }
+
+        .about-label {
+            color: #1683ff;
+
+            font-size: 11px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 15px;
+        }
+
+        .about-content h2 {
+            font-size: 60px;
+
+            margin-bottom: 30px;
+        }
+
+        .about-content > p:last-child {
+            color: #8d99a8;
+
+            line-height: 1.8;
+        }
+
+        /* =========================
+           NOVEL PAGE
+        ========================= */
+
+        .novel-page {
+            padding-top: 120px;
+
+            min-height: 100vh;
+        }
+
+        .novel-header {
+            padding: 80px 10% 50px;
+
+            border-bottom: 1px solid #1b2633;
+        }
+
+        .back-button {
+            background: none;
+
+            border: none;
+
+            color: #1683ff;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            margin-bottom: 40px;
+        }
+
+        .back-button:hover {
+            color: #ffffff;
+        }
+
+        .novel-header h1 {
+            font-size: clamp(40px, 6vw, 75px);
+
+            margin-bottom: 15px;
+        }
+
+        .novel-header p {
+            color: #707c89;
+
+            font-size: 14px;
+        }
+
+        /* =========================
+           CHAPTER LIST
+        ========================= */
+
+        .chapter-list {
+            padding: 60px 10%;
+        }
+
+        .chapter-item {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 25px;
+
+            margin-bottom: 10px;
+
+            border: 1px solid #1b2633;
+
+            background: #080c11;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .chapter-item.available:hover {
+            border-color: #1683ff;
+
+            transform: translateX(5px);
+        }
+
+        .chapter-item.locked {
+            opacity: 0.4;
+
+            cursor: default;
+        }
+
+        .chapter-number {
+            color: #1683ff;
+
+            font-size: 11px;
+
+            margin-bottom: 7px;
+        }
+
+        .chapter-name {
+            font-size: 17px;
+
+            font-weight: 600;
+        }
+
+        .chapter-status {
+            color: #707c89;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           READING PAGE
+        ========================= */
+
+        .reading-page {
+            padding-top: 120px;
+
+            min-height: 100vh;
+        }
+
+        .reading-header {
+            padding: 70px 10% 50px;
+
+            border-bottom: 1px solid #1b2633;
+        }
+
+        .reading-header .chapter-label {
+            color: #1683ff;
+
+            font-size: 11px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 15px;
+        }
+
+        .reading-header h1 {
+            font-size: clamp(35px, 5vw, 65px);
+
+            margin-bottom: 15px;
+        }
+
+        .reading-header p {
+            color: #707c89;
+
+            font-size: 13px;
+        }
+
+        .reading-content {
+            max-width: 850px;
+
+            margin: auto;
+
+            padding: 70px 25px 100px;
+        }
+
+        .reading-content p {
+            color: #c1c7ce;
+
+            font-size: 16px;
+
+            line-height: 2;
+
+            margin-bottom: 25px;
+        }
+
+        .reading-content .dialogue {
+            color: #ffffff;
+        }
+
+        .reading-content .emphasis {
+            color: #1683ff;
+
+            font-weight: 700;
+        }
+
+        .reading-content .chapter-ending {
+            margin-top: 50px;
+
+            text-align: center;
+
+            color: #1683ff;
+
+            font-weight: 800;
+
+            letter-spacing: 3px;
+        }
+
+        /* =========================
+           READING NAVIGATION
+        ========================= */
+
+        .reading-navigation {
+            max-width: 850px;
+
+            margin: auto;
+
+            padding: 30px 25px 80px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .nav-chapter {
+            padding: 15px 20px;
+
+            border: 1px solid #1b2633;
+
+            background: #080c11;
+
+            color: #ffffff;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .nav-chapter:hover {
+            border-color: #1683ff;
+        }
+
+        .nav-chapter.disabled {
+            opacity: 0.3;
+
+            cursor: default;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 40px 10%;
+
+            border-top: 1px solid #1b2633;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+        }
+
+        footer p {
+            color: #596572;
+
+            font-size: 11px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .navbar nav {
+                display: none;
+            }
+
+            .format-container {
+                grid-template-columns: 1fr;
+            }
+
+            .character-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .hero {
+                padding-left: 7%;
+                padding-right: 7%;
+            }
+
+            .hero h1 {
+                font-size: 60px;
+
+                letter-spacing: -3px;
+            }
+
+            .section {
+                padding: 80px 7%;
+            }
+
+            .character-container {
+                grid-template-columns: 1fr;
+            }
+
+            .reading-content {
+                padding-left: 7%;
+                padding-right: 7%;
+            }
+
+            .reading-navigation {
+                padding-left: 7%;
+                padding-right: 7%;
+            }
+
+            footer {
+                flex-direction: column;
+
+                gap: 15px;
+
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HOMEPAGE
+    ========================= -->
+
+    <div id="homePage" class="page active">
+
+        <!-- NAVBAR -->
+
+        <header class="navbar">
+
+            <div class="logo">
+                WAR AT THE END
+            </div>
+
+            <nav>
+                <a href="#home">Beranda</a>
+                <a href="#formats">Karya</a>
+                <a href="#synopsis">Sinopsis</a>
+                <a href="#characters">Karakter</a>
+                <a href="#about">Tentang</a>
+            </nav>
+
+        </header>
+
+
+        <!-- HERO -->
+
+        <section id="home" class="hero">
+
+            <div class="hero-content">
+
+                <p class="small-title">
+                    CERITA ORIGINAL
+                </p>
+
+                <h1>
+                    WAR<br>
+                    AT THE END
+                </h1>
+
+                <p class="hero-description">
+                    Ketika umat manusia menghadapi musuh yang tidak pernah
+                    mereka kenal, perang terbesar dalam sejarah akhirnya dimulai.
+                </p>
+
+                <button
+                    class="main-button"
+                    onclick="openNovel()">
+                    MULAI MEMBACA
+                </button>
+
+            </div>
+
+            <div class="hero-line"></div>
+
+        </section>
+
+
+        <!-- FORMAT -->
+
+        <section id="formats" class="section">
+
+            <div class="section-title">
+
+                <span>01</span>
+
+                <h2>KARYA</h2>
+
+            </div>
+
+
+            <div class="format-container">
+
+
+                <!-- NOVEL -->
+
+                <div
+                    class="format-card active"
+                    onclick="openNovel()">
+
+                    <div class="format-number">
+                        01
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            NOVEL
+                        </h3>
+
+                        <p>
+                            Tersedia
+                        </p>
+
+                    </div>
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </div>
+
+
+                <!-- LIGHT NOVEL -->
+
+                <div class="format-card disabled">
+
+                    <div class="format-number">
+                        02
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            LIGHT NOVEL
+                        </h3>
+
+                        <p>
+                            Segera Hadir
+                        </p>
+
+                    </div>
+
+                    <span class="arrow">
+                        —
+                    </span>
+
+                </div>
+
+
+                <!-- COMIC -->
+
+                <div class="format-card disabled">
+
+                    <div class="format-number">
+                        03
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            KOMIK
+                        </h3>
+
+                        <p>
+                            Segera Hadir
+                        </p>
+
+                    </div>
+
+                    <span class="arrow">
+                        —
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- SINOPSIS -->
+
+        <section id="synopsis" class="section">
+
+            <div class="section-title">
+
+                <span>02</span>
+
+                <h2>SINOPSIS</h2>
+
+            </div>
+
+
+            <div class="synopsis">
+
+                <p>
+                    Dunia yang selama ini berjalan seperti biasa tiba-tiba
+                    berubah ketika makhluk misterius yang dikenal sebagai
+                    <strong>Abyssal</strong> muncul dan mulai menyerang manusia.
+                </p>
+
+                <p>
+                    Serangan yang awalnya terjadi di beberapa wilayah dengan
+                    cepat berubah menjadi perang besar. Kota-kota hancur,
+                    negara-negara mulai kehilangan kendali, dan umat manusia
+                    dipaksa menghadapi musuh yang jauh lebih kuat secara fisik.
+                </p>
+
+                <p>
+                    Di tengah kekacauan tersebut,
+                    <strong>Kai Arashiro</strong>, seorang mahasiswa biasa,
+                    harus berjuang untuk bertahan hidup bersama orang-orang
+                    terdekatnya.
+                </p>
+
+                <p>
+                    Namun, apa yang awalnya hanya terlihat seperti perjuangan
+                    untuk bertahan hidup perlahan berubah menjadi sesuatu
+                    yang jauh lebih besar.
+                </p>
+
+                <p>
+                    Ketika perang semakin meluas dan umat manusia berada
+                    di ambang kehancuran, Kai dan jutaan manusia lainnya
+                    harus berjuang mempertahankan satu hal yang tersisa:
+                </p>
+
+                <h3 class="synopsis-ending">
+                    MASA DEPAN UMAT MANUSIA.
+                </h3>
+
+                <p class="story-title">
+                    Inilah kisah <strong>War at the End.</strong>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- CHARACTERS -->
+
+        <section id="characters" class="section">
+
+            <div class="section-title">
+
+                <span>03</span>
+
+                <h2>KARAKTER</h2>
+
+            </div>
+
+
+            <div class="character-container">
+
+
+                <div class="character-card">
+
+                    <div class="character-image">
+                        IMAGE
+                    </div>
+
+                    <div class="character-info">
+
+                        <p>01</p>
+
+                        <h3>
+                            KAI ARASHIRO
+                        </h3>
+
+                        <span>
+                            PROTAGONIS
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="character-card">
+
+                    <div class="character-image">
+                        IMAGE
+                    </div>
+
+                    <div class="character-info">
+
+                        <p>02</p>
+
+                        <h3>
+                            RIN ASAKURA
+                        </h3>
+
+                        <span>
+                            RECON / SNIPER
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="character-card">
+
+                    <div class="character-image">
+                        IMAGE
+                    </div>
+
+                    <div class="character-info">
+
+                        <p>03</p>
+
+                        <h3>
+                            NOAH MILLER
+                        </h3>
+
+                        <span>
+                            FRONTLINE
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="character-card">
+
+                    <div class="character-image">
+                        IMAGE
+                    </div>
+
+                    <div class="character-info">
+
+                        <p>04</p>
+
+                        <h3>
+                            REN HARUMA
+                        </h3>
+
+                        <span>
+                            COMBAT MEDIC
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT -->
+
+        <section id="about" class="section about-section">
+
+            <div class="section-title">
+
+                <span>04</span>
+
+                <h2>TENTANG</h2>
+
+            </div>
+
+
+            <div class="about-content">
+
+                <p class="about-label">
+                    DIBUAT DAN DITULIS OLEH
+                </p>
+
+                <h2>
+                    ZIKRI
+                </h2>
+
+                <p>
+                    <strong>War at the End</strong> adalah sebuah cerita
+                    original yang menggabungkan peperangan, survival,
+                    teknologi, dan perjuangan umat manusia menghadapi
+                    ancaman Abyssal.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <div class="footer-logo">
+                WAR AT THE END
+            </div>
+
+            <p>
+                © 2026 Zikri. All rights reserved.
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <!-- =========================
+         NOVEL PAGE
+    ========================= -->
+
+    <div id="novelPage" class="page">
+
+        <header class="navbar">
+
+            <div class="logo">
+                WAR AT THE END
+            </div>
+
+            <nav>
+                <a href="#" onclick="goHome()">
+                    Beranda
+                </a>
+            </nav>
+
+        </header>
+
+
+        <main class="novel-page">
+
+
+            <section class="novel-header">
+
+                <button
+                    class="back-button"
+                    onclick="goHome()">
+
+                    ← KEMBALI KE BERANDA
+
+                </button>
+
+
+                <h1>
+                    NOVEL
+                </h1>
+
+                <p>
+                    Baca kisah War at the End.
+                </p>
+
+            </section>
+
+
+            <section class="chapter-list">
+
+
+                <!-- CHAPTER 1 -->
+
+                <div
+                    class="chapter-item available"
+                    onclick="openChapter1()">
+
+                    <div>
+
+                        <div class="chapter-number">
+                            CHAPTER 01
+                        </div>
+
+                        <div class="chapter-name">
+                            Hari Terakhir yang Normal
+                        </div>
+
+                    </div>
+
+                    <div class="chapter-status">
+                        BACA →
+                    </div>
+
+                </div>
+
+
+                <!-- CHAPTER 2 -->
+
+                <div class="chapter-item locked">
+
+                    <div>
+
+                        <div class="chapter-number">
+                            CHAPTER 02
+                        </div>
+
+                        <div class="chapter-name">
+                            Coming Soon
+                        </div>
+
+                    </div>
+
+                    <div class="chapter-status">
+                        SEGERA HADIR
+                    </div>
+
+                </div>
+
+
+            </section>
+
+        </main>
+
+
+        <footer>
+
+            <div class="footer-logo">
+                WAR AT THE END
+            </div>
+
+            <p>
+                © 2026 Zikri. All rights reserved.
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <!-- =========================
+         CHAPTER 1
+    ========================= -->
+
+    <div id="chapter1Page" class="page">
+
+        <header class="navbar">
+
+            <div class="logo">
+                WAR AT THE END
+            </div>
+
+            <nav>
+
+                <a
+                    href="#"
+                    onclick="openNovel()">
+
+                    Novel
+
+                </a>
+
+            </nav>
+
+        </header>
+
+
+        <main class="reading-page">
+
+
+            <section class="reading-header">
+
+                <button
+                    class="back-button"
+                    onclick="openNovel()">
+
+                    ← KEMBALI KE DAFTAR CHAPTER
+
+                </button>
+
+
+                <div class="chapter-label">
+                    CHAPTER 01
+                </div>
+
+                <h1>
+                    Hari Terakhir yang Normal
+                </h1>
+
+                <p>
+                    War at the End
+                </p>
+
+            </section>
+
+
+            <!-- ISI CHAPTER 1 -->
+
+            <article class="reading-content">
+
+
+                <p>
+                    Pagi itu, kota Halden masih terlihat seperti biasanya.
+                    Jalanan mulai dipenuhi kendaraan, beberapa toko baru saja
+                    membuka pintu, dan mahasiswa berjalan terburu-buru menuju
+                    kampus. Di salah satu bus kota, seorang pemuda duduk di
+                    dekat jendela sambil menatap jalanan yang perlahan
+                    semakin ramai.
+                </p>
+
+
+                <p>
+                    Namanya Kai Arashiro, seorang mahasiswa yang menjalani
+                    kehidupan cukup sederhana. Setiap hari kegiatannya hampir
+                    selalu sama, berangkat kuliah, mengikuti kelas, mengerjakan
+                    tugas, lalu pulang. Tidak ada sesuatu yang terlalu menarik
+                    dalam hidupnya, dan Kai sendiri tidak pernah merasa
+                    keberatan dengan hal itu.
+                </p>
+
+
+                <p>
+                    Kai melirik layar ponselnya yang menunjukkan pukul 07.18.
+                    Ia masih punya cukup waktu sebelum kelas dimulai, jadi ia
+                    kembali menyandarkan kepalanya ke kursi sambil
+                    memperhatikan gedung-gedung di luar jendela. Pagi yang
+                    tenang seperti ini sudah menjadi sesuatu yang biasa baginya.
+                </p>
+
+
+                <p>
+                    Sesampainya di kampus, Kai turun dari bus dan berjalan
+                    melewati gerbang utama. Suasana kampus sudah cukup ramai.
+                    Beberapa mahasiswa berkumpul di depan gedung, sebagian
+                    lainnya berjalan sambil membawa laptop atau buku.
+                </p>
+
+
+                <p>
+                    Kai baru berjalan beberapa meter ketika tiba-tiba sepasang
+                    tangan menutup kedua matanya dari belakang.
+                </p>
+
+
+                <p class="dialogue">
+                    "Coba tebak siapa."
+                </p>
+
+
+                <p>
+                    Kai langsung berhenti. Suara itu sebenarnya sudah sangat
+                    familiar untuknya, tapi ia dengan sengaja memasang wajah
+                    berpikir.
+                </p>
+
+
+                <p class="dialogue">
+                    "Hmm... satpam?"
+                </p>
+
+
+                <p class="dialogue">
+                    "Bukan."
+                </p>
+
+
+                <p class="dialogue">
+                    "Mahasiswa baru?"
+                </p>
+
+
+                <p class="dialogue">
+                    "Salah lagi."
+                </p>
+
+
+                <p class="dialogue">
+                    "Dosen?"
+                </p>
+
+
+                <p>
+                    Tangan yang menutup matanya langsung mencubit pipinya.
+                </p>
+
+
+                <p class="dialogue">
+                    "Jawabannya salah semua ih."
+                </p>
+
+
+                <p class="dialogue">
+                    Kai tertawa kecil. "Rin?"
+                </p>
+
+
+                <p class="dialogue">
+                    "Nah gitu dong."
+                </p>
+
+
+                <p>
+                    Rin Asakura melepaskan tangannya dan berjalan di samping Kai.
+                </p>
+
+
+                <p class="dialogue">
+                    "Lu sengaja banget bikin gw nebak sampai tiga kali, ya?"
+                    tanya Kai.
+                </p>
+
+
+                <p class="dialogue">
+                    "Seru aja lihat lu mikir."
+                </p>
+
+
+                <p class="dialogue">
+                    "Gw nggak mikir. Gw cuma males jawab."
+                </p>
+
+
+                <p class="dialogue">
+                    "Alasan."
+                </p>
+
+
+                <p>
+                    Mereka kemudian berjalan menuju gedung perkuliahan sambil
+                    mengobrol tentang tugas yang harus dikumpulkan hari itu.
+                    Kai dan Rin memang sudah cukup lama dekat, bahkan sebelum
+                    mereka masuk universitas yang sama. Karena itu, bercanda
+                    seperti tadi sudah menjadi hal yang biasa bagi mereka.
+                </p>
+
+
+                <p>
+                    Beberapa jam berikutnya berjalan normal. Mereka mengikuti
+                    kelas, mencatat materi, dan sesekali saling mengirim pesan
+                    ketika dosen sedang menjelaskan sesuatu yang menurut
+                    mereka membosankan. Ketika waktu istirahat tiba, Kai
+                    langsung menutup bukunya.
+                </p>
+
+
+                <p class="dialogue">
+                    "Akhirnya selesai juga."
+                </p>
+
+
+                <p class="dialogue">
+                    Rin memasukkan laptopnya ke dalam tas. "Makan?"
+                </p>
+
+
+                <p class="dialogue">
+                    "Jelas."
+                </p>
+
+
+                <p>
+                    Mereka berdua kemudian pergi ke tempat makan yang biasa
+                    mereka datangi. Di sana sudah ada Noah Miller dan Ren
+                    Haruma yang lebih dulu datang. Noah sedang memainkan
+                    ponselnya, sedangkan Ren masih sibuk melihat menu makanan.
+                </p>
+
+
+                <p class="dialogue">
+                    "Lu berdua lama banget," kata Noah begitu Kai dan Rin duduk.
+                </p>
+
+
+                <p class="dialogue">
+                    "Lu aja yang kecepetan," jawab Rin.
+                </p>
+
+
+                <p>
+                    Kai melihat menu di tangan Ren.
+                </p>
+
+
+                <p class="dialogue">
+                    "Lu dari tadi ngapain?"
+                </p>
+
+
+                <p class="dialogue">
+                    "Milih makanan."
+                </p>
+
+
+                <p class="dialogue">
+                    "Belum selesai?"
+                </p>
+
+
+                <p class="dialogue">
+                    "Ini keputusan penting, Kai."
+                </p>
+
+
+                <p class="dialogue">
+                    Kai menghela napas. "Lu kalau milih makanan aja lama,
+                    gimana nanti kalau disuruh milih pasangan?"
+                </p>
+
+
+                <p class="dialogue">
+                    Ren langsung menatapnya. "Masalahnya pasangan nggak ada di menu."
+                </p>
+
+
+                <p>
+                    Noah langsung tertawa, sementara Rin hanya menggeleng
+                    melihat mereka.
+                </p>
+
+
+                <p>
+                    Beberapa menit kemudian makanan mereka datang dan obrolan
+                    ringan kembali berlangsung. Mereka membicarakan tugas,
+                    dosen, rencana akhir pekan, sampai hal-hal yang sebenarnya
+                    tidak terlalu penting. Suasananya sama seperti hari-hari
+                    sebelumnya.
+                </p>
+
+
+                <p>
+                    Sampai Noah tiba-tiba berhenti memainkan ponselnya.
+                </p>
+
+
+                <p class="dialogue">
+                    "Eh, kalian lihat ini."
+                </p>
+
+
+                <p class="dialogue">
+                    Kai menoleh. "Apa?"
+                </p>
+
+
+                <p>
+                    Noah menunjukkan layar ponselnya. Di sana terdapat sebuah
+                    berita yang baru saja muncul beberapa menit lalu.
+                </p>
+
+
+                <p class="emphasis">
+                    MAKHLUK TAK DIKENAL MENYERANG BEBERAPA WILAYAH,
+                    WARGA DIMINTA TETAP DI DALAM RUMAH.
+                </p>
+
+
+                <p>
+                    Rin mengambil ponsel Noah dan membaca artikel tersebut.
+                    Beberapa foto di bawah judul memperlihatkan jalanan yang
+                    rusak, kendaraan yang hancur, dan sebuah makhluk besar
+                    dengan bentuk tubuh yang tidak jelas karena kualitas
+                    gambar yang buruk.
+                </p>
+
+
+                <p class="dialogue">
+                    "Monster?" Ren bertanya.
+                </p>
+
+
+                <p class="dialogue">
+                    "Katanya begitu," jawab Noah.
+                </p>
+
+
+                <p>
+                    Kai ikut melihat layar tersebut.
+                </p>
+
+
+                <p class="dialogue">
+                    "Ini kejadian di mana?"
+                </p>
+
+
+                <p class="dialogue">
+                    "Beberapa kota. Katanya bukan cuma satu tempat."
+                </p>
+
+
+                <p>
+                    Rin menggeser layar dan membaca beberapa informasi lainnya.
+                </p>
+
+
+                <p class="dialogue">
+                    "Pemerintah belum tahu makhluk ini berasal dari mana.
+                    Mereka juga bilang masyarakat jangan mendekati lokasi kejadian."
+                </p>
+
+
+                <p class="dialogue">
+                    Ren mengangkat bahu. "Mungkin eksperimen militer yang gagal."
+                </p>
+
+
+                <p class="dialogue">
+                    "Lu kebanyakan nonton film," kata Kai.
+                </p>
+
+
+                <p class="dialogue">
+                    Noah tertawa kecil. "Tapi serius, fotonya kelihatan asli."
+                </p>
+
+
+                <p>
+                    Kai kembali melihat salah satu foto. Bentuk makhluk itu
+                    memang aneh. Tubuhnya besar, kulitnya terlihat gelap,
+                    dan bagian wajahnya hampir tidak terlihat jelas. Namun,
+                    dari ukurannya saja sudah cukup untuk membuat Kai merasa
+                    tidak nyaman.
+                </p>
+
+
+                <p class="dialogue">
+                    "Udah, nanti juga ada penjelasan," kata Kai sambil
+                    mengembalikan ponsel Noah. "Kita makan dulu."
+                </p>
+
+
+                <p>
+                    Mereka akhirnya kembali melanjutkan makan dan tidak terlalu
+                    memikirkan berita tersebut. Bagi mereka, kejadian itu
+                    terjadi jauh dari Halden dan kemungkinan besar akan segera
+                    ditangani pemerintah.
+                </p>
+
+
+                <p>
+                    Mereka tidak tahu bahwa beberapa jam kemudian, berita
+                    tersebut akan menjadi kenyataan di depan mata mereka sendiri.
+                </p>
+
+
+                <p>
+                    Perkuliahan selesai menjelang sore. Kai, Rin, Noah, dan Ren
+                    berjalan keluar dari kampus bersama-sama seperti biasa.
+                    Matahari mulai turun dan jalanan Halden perlahan semakin
+                    padat oleh orang-orang yang pulang kerja maupun mahasiswa
+                    yang baru selesai kuliah.
+                </p>
+
+
+                <p class="dialogue">
+                    "Besok masuk jam berapa?" tanya Ren.
+                </p>
+
+
+                <p class="dialogue">
+                    "Jam delapan," jawab Rin.
+                </p>
+
+
+                <p class="dialogue">
+                    Noah menghela napas. "Berarti gw harus bangun pagi lagi."
+                </p>
+
+
+                <p class="dialogue">
+                    "Lu tiap hari juga bangun pagi," kata Kai.
+                </p>
+
+
+                <p class="dialogue">
+                    "Bangun pagi bukan berarti gw suka."
+                </p>
+
+
+                <p>
+                    Mereka tertawa kecil dan terus berjalan menuju persimpangan
+                    tempat mereka biasanya berpisah.
+                </p>
+
+
+                <p>
+                    Namun, beberapa menit kemudian, Rin tiba-tiba memperlambat
+                    langkah.
+                </p>
+
+
+                <p class="dialogue">
+                    "Eh."
+                </p>
+
+
+                <p class="dialogue">
+                    Kai menoleh. "Kenapa?"
+                </p>
+
+
+                <p class="dialogue">
+                    Rin menunjuk ke arah jalan di depan mereka.
+                    "Kalian ngerasa nggak?"
+                </p>
+
+
+                <p>
+                    Mereka berhenti.
+                </p>
+
+
+                <p>
+                    Awalnya tidak ada sesuatu yang terlihat aneh. Jalanan
+                    masih dipenuhi kendaraan, orang-orang masih berjalan
+                    seperti biasa, tetapi suasananya terasa sedikit berbeda.
+                </p>
+
+
+                <p>
+                    Sebuah bus berhenti mendadak di tengah jalan.
+                </p>
+
+
+                <p>
+                    Beberapa kendaraan di belakangnya ikut mengerem.
+                </p>
+
+
+                <p>
+                    Kemudian seorang pria keluar dari salah satu mobil dan
+                    berteriak kepada orang-orang di sekitarnya.
+                </p>
+
+
+                <p class="emphasis">
+                    "JANGAN DI SANA! LARI!"
+                </p>
+
+
+                <p>
+                    Beberapa orang mulai menoleh.
+                </p>
+
+
+                <p>
+                    Lalu semuanya terjadi hampir bersamaan.
+                </p>
+
+
+                <p>
+                    Satu orang berlari.
+                </p>
+
+
+                <p>
+                    Kemudian dua.
+                </p>
+
+
+                <p>
+                    Lima.
+                </p>
+
+
+                <p>
+                    Sepuluh.
+                </p>
+
+
+                <p>
+                    Dalam beberapa detik, arus orang yang berlari semakin banyak.
+                </p>
+
+
+                <p class="dialogue">
+                    Ren menatap mereka dengan bingung. "Kenapa mereka?"
+                </p>
+
+
+                <p>
+                    Tidak ada yang menjawab.
+                </p>
+
+
+                <p>
+                    Suara klakson terdengar dari belakang. Sebuah mobil mencoba
+                    menerobos kerumunan, tetapi kehilangan kendali dan menabrak
+                    kendaraan lain. Suara benturan membuat beberapa orang berteriak.
+                </p>
+
+
+                <p class="dialogue">
+                    Noah memasukkan ponselnya ke saku.
+                    "Oke... ini kayaknya bukan kecelakaan biasa."
+                </p>
+
+
+                <p>
+                    Kai masih memperhatikan ujung jalan.
+                </p>
+
+
+                <p>
+                    Ada sesuatu di sana.
+                </p>
+
+
+                <p>
+                    Bukan manusia.
+                </p>
+
+
+                <p>
+                    Sebuah bayangan besar bergerak perlahan di antara kendaraan.
+                </p>
+
+
+                <p class="dialogue">
+                    "Jangan bilang..." Ren mulai mundur.
+                </p>
+
+
+                <p>
+                    Bayangan itu semakin dekat.
+                </p>
+
+
+                <p class="dialogue">
+                    Seseorang berlari melewati mereka sambil berteriak,
+                    "MONSTER!"
+                </p>
+
+
+                <p class="dialogue">
+                    Rin langsung menarik lengan Ren. "Kita pergi."
+                </p>
+
+
+                <p>
+                    Mereka baru saja berbalik ketika terdengar suara keras
+                    dari belakang.
+                </p>
+
+
+                <p class="emphasis">
+                    *BRAK!*
+                </p>
+
+
+                <p>
+                    Sebuah kendaraan terlempar dan menghantam sisi bangunan.
+                </p>
+
+
+                <p>
+                    Kai menoleh refleks.
+                </p>
+
+
+                <p>
+                    Makhluk itu sekarang terlihat jelas.
+                    Tubuhnya jauh lebih besar daripada manusia. Kulitnya gelap
+                    dan kasar, kedua tangannya panjang, dan matanya memancarkan
+                    cahaya merah. Tubuhnya bergerak dengan cara yang terasa
+                    salah bagi Kai, terlalu cepat untuk ukuran sebesar itu.
+                </p>
+
+
+                <p>
+                    Makhluk itu mengangkat kepalanya.
+                </p>
+
+
+                <p>
+                    Kai merasa tatapan makhluk tersebut mengarah tepat ke
+                    kerumunan di depan.
+                </p>
+
+
+                <p class="dialogue">
+                    "Jangan berhenti."
+                </p>
+
+
+                <p>
+                    Suara Kai terdengar lebih serius dari biasanya.
+                </p>
+
+
+                <p>
+                    Mereka mulai berjalan cepat.
+                </p>
+
+
+                <p>
+                    Kemudian terdengar suara langkah berat dari belakang.
+                </p>
+
+
+                <p>
+                    Satu.
+                </p>
+
+
+                <p>
+                    Dua.
+                </p>
+
+
+                <p>
+                    Tiga.
+                </p>
+
+
+                <p>
+                    Semakin dekat.
+                </p>
+
+
+                <p class="dialogue">
+                    "Dia ngejar kita?" Ren bertanya dengan napas mulai tidak teratur.
+                </p>
+
+
+                <p class="dialogue">
+                    "Jangan lihat belakang," jawab Kai.
+                </p>
+
+
+                <p class="dialogue">
+                    "Tapi—"
+                </p>
+
+
+                <p class="dialogue">
+                    "Ren, jangan."
+                </p>
+
+
+                <p>
+                    Mereka mempercepat langkah.
+                </p>
+
+
+                <p>
+                    Sebuah kendaraan tiba-tiba melintas di depan mereka.
+                    Kai menarik Rin ke belakang tepat sebelum mobil itu
+                    menghantam pembatas jalan. Noah hampir terseret oleh
+                    orang-orang yang berlarian, tetapi ia berhasil menjaga
+                    keseimbangan.
+                </p>
+
+
+                <p class="dialogue">
+                    "Gw nggak suka ini," katanya.
+                </p>
+
+
+                <p class="dialogue">
+                    "Baru sadar?" jawab Rin.
+                </p>
+
+
+                <p>
+                    Mereka terus berlari melewati jalan yang semakin kacau.
+                    Kai mencari tempat untuk berlindung, tetapi sebagian besar
+                    toko sudah penuh dengan orang. Beberapa pintu bahkan sudah
+                    ditutup dari dalam.
+                </p>
+
+
+                <p>
+                    Kemudian Rin menunjuk sebuah gedung.
+                </p>
+
+
+                <p class="dialogue">
+                    "Di sana!"
+                </p>
+
+
+                <p class="dialogue">
+                    "Masuk!"
+                </p>
+
+
+                <p>
+                    Sebuah apartemen berdiri beberapa puluh meter dari mereka.
+                </p>
+
+
+                <p>
+                    Mereka berempat berlari menuju gedung tersebut.
+                </p>
+
+
+                <p>
+                    Namun sebelum mencapai pintu, suara geraman terdengar
+                    dari sisi jalan.
+                </p>
+
+
+                <p>
+                    Kai menoleh.
+                </p>
+
+
+                <p class="dialogue">
+                    "Yang satu lagi?" Noah berseru.
+                </p>
+
+
+                <p>
+                    Makhluk lain muncul dari balik kendaraan yang rusak.
+                </p>
+
+
+                <p class="dialogue">
+                    "CEPAT!"
+                </p>
+
+
+                <p>
+                    Mereka berlari sekuat tenaga.
+                </p>
+
+
+                <p>
+                    Ren yang berada paling belakang tiba-tiba tersandung kaki
+                    seseorang yang jatuh di jalan.
+                </p>
+
+
+                <p class="dialogue">
+                    "Ren!"
+                </p>
+
+
+                <p>
+                    Rin langsung berbalik.
+                </p>
+
+
+                <p>
+                    Makhluk itu sudah semakin dekat.
+                </p>
+
+
+                <p>
+                    Ren mencoba bangkit, tetapi kakinya masih tersangkut.
+                </p>
+
+
+                <p class="dialogue">
+                    "Gw bisa!"
+                </p>
+
+
+                <p class="emphasis">
+                    "REN!"
+                </p>
+
+
+                <p>
+                    Noah berlari kembali dan menarik kerah bajunya tepat
+                    ketika makhluk itu menghantam permukaan jalan di tempat
+                    Ren berada beberapa detik sebelumnya.
+                </p>
+
+
+                <p>
+                    Mereka berdua terjatuh.
+                </p>
+
+
+                <p>
+                    Debu dan pecahan kecil beterbangan di sekitar mereka.
+                </p>
+
+
+                <p>
+                    Noah segera bangkit dan menarik Ren.
+                </p>
+
+
+                <p class="dialogue">
+                    "Lu masih bisa lari?"
+                </p>
+
+
+                <p class="dialogue">
+                    Ren menatapnya dengan wajah panik.
+                    "Kalau nggak bisa juga lu tinggalin?"
+                </p>
+
+
+                <p class="dialogue">
+                    "Jangan banyak ngomong."
+                </p>
+
+
+                <p>
+                    Mereka kembali berlari.
+                </p>
+
+
+                <p>
+                    Kai sudah mencapai pintu apartemen. Ia mendorongnya hingga
+                    terbuka lebar.
+                </p>
+
+
+                <p class="emphasis">
+                    "Masuk!"
+                </p>
+
+
+                <p>
+                    Rin masuk lebih dulu, diikuti Ren dan Noah. Kai menjadi
+                    orang terakhir yang masuk sebelum menarik pintu hingga tertutup.
+                </p>
+
+
+                <p>
+                    Mereka tidak berhenti sampai mencapai lobi.
+                </p>
+
+
+                <p>
+                    Untuk beberapa detik, tidak ada yang berbicara.
+                </p>
+
+
+                <p class="dialogue">
+                    Ren membungkuk sambil memegang lututnya.
+                    "Gw... hampir mati."
+                </p>
+
+
+                <p class="dialogue">
+                    Noah masih melihat ke arah pintu.
+                    "Belum. Tapi kalau kita berdiri di sini terus,
+                    mungkin sebentar lagi."
+                </p>
+
+
+                <p>
+                    Rin mengatur napas lalu melihat ke luar melalui kaca pintu.
+                </p>
+
+
+                <p>
+                    Makhluk tadi berhenti di jalan.
+                </p>
+
+
+                <p>
+                    Ia tidak langsung masuk.
+                </p>
+
+
+                <p>
+                    Makhluk itu hanya berdiri sambil melihat ke arah gedung.
+                </p>
+
+
+                <p>
+                    Rin menelan ludah.
+                </p>
+
+
+                <p class="dialogue">
+                    "Dia lihat kita."
+                </p>
+
+
+                <p>
+                    Kai mengikuti arah pandangnya.
+                </p>
+
+
+                <p>
+                    Benar.
+                </p>
+
+
+                <p>
+                    Makhluk itu perlahan mengangkat kepalanya.
+                </p>
+
+
+                <p>
+                    Kemudian bergerak menuju gedung.
+                </p>
+
+
+                <p class="dialogue">
+                    "Kita naik."
+                </p>
+
+
+                <p>
+                    Kai melihat ke arah meja resepsionis. Di belakang meja
+                    terdapat papan dengan banyak gantungan kunci.
+                </p>
+
+
+                <p class="dialogue">
+                    "Ambil kamar dulu."
+                </p>
+
+
+                <p>
+                    Noah langsung mendekati meja resepsionis.
+                </p>
+
+
+                <p class="dialogue">
+                    "Ada orang?"
+                </p>
+
+
+                <p>
+                    Tidak ada jawaban.
+                </p>
+
+
+                <p>
+                    Ia memanggil sekali lagi.
+                </p>
+
+
+                <p>
+                    Tetap tidak ada.
+                </p>
+
+
+                <p>
+                    Noah melihat papan kunci di belakang meja. Beberapa kunci
+                    masih tergantung di sana.
+                </p>
+
+
+                <p class="dialogue">
+                    "Gw ambil satu."
+                </p>
+
+
+                <p>
+                    Ia mengambil salah satu kunci secara acak.
+                </p>
+
+
+                <p>
+                    Pada gantungan kunci tersebut tertulis angka
+                    <strong>511</strong>.
+                </p>
+
+
+                <p class="dialogue">
+                    "511."
+                </p>
+
+
+                <p class="dialogue">
+                    Rin melihatnya. "Lantai lima."
+                </p>
+
+
+                <p class="dialogue">
+                    Kai mengangguk. "Kalau kosong, kita bertahan di sana."
+                </p>
+
+
+                <p>
+                    Dari luar terdengar suara benturan.
+                </p>
+
+
+                <p>
+                    Mereka semua menoleh.
+                </p>
+
+
+                <p>
+                    Pintu kaca lobi bergetar sedikit.
+                </p>
+
+
+                <p class="dialogue">
+                    Ren langsung menunjuk ke arah tangga.
+                    "Kayaknya sekarang bukan waktunya diskusi."
+                </p>
+
+
+                <p class="dialogue">
+                    Noah memasukkan kunci ke sakunya.
+                    "Setuju."
+                </p>
+
+
+                <p>
+                    Mereka segera menuju tangga. Kai berada paling depan,
+                    Rin di belakangnya, sementara Noah membantu memastikan
+                    Ren tidak tertinggal.
+                </p>
+
+
+                <p>
+                    Mereka baru mencapai tangga ketika terdengar suara kaca
+                    pecah dari lobi.
+                </p>
+
+
+                <p>
+                    Mereka semua berhenti.
+                </p>
+
+
+                <p class="dialogue">
+                    Ren menoleh. "Dia masuk."
+                </p>
+
+
+                <p class="dialogue">
+                    Kai langsung melihat ke atas. "Terus naik."
+                </p>
+
+
+                <p>
+                    Mereka berlari menaiki tangga.
+                </p>
+
+
+                <p>
+                    Suara langkah berat terdengar dari bawah.
+                </p>
+
+
+                <p>
+                    Semakin dekat.
+                </p>
+
+
+                <p>
+                    Satu lantai.
+                </p>
+
+
+                <p>
+                    Dua lantai.
+                </p>
+
+
+                <p>
+                    Kai tidak berani menoleh terlalu lama.
+                </p>
+
+
+                <p>
+                    Di lantai tiga, Rin hampir kehilangan keseimbangan saat
+                    melewati anak tangga.
+                </p>
+
+
+                <p class="dialogue">
+                    Kai langsung menarik tangannya.
+                    "Lu nggak apa-apa?"
+                </p>
+
+
+                <p class="dialogue">
+                    "Masih."
+                </p>
+
+
+                <p class="dialogue">
+                    "Jangan jatuh."
+                </p>
+
+
+                <p class="dialogue">
+                    "Gw tahu."
+                </p>
+
+
+                <p>
+                    Mereka terus naik.
+                </p>
+
+
+                <p>
+                    Ketika sampai di lantai empat, suara dari bawah tiba-tiba
+                    menghilang.
+                </p>
+
+
+                <p class="dialogue">
+                    "Dia berhenti?"
+                </p>
+
+
+                <p>
+                    Noah menatap ke bawah melalui sela-sela tangga.
+                </p>
+
+
+                <p class="dialogue">
+                    "Gw nggak lihat apa-apa."
+                </p>
+
+
+                <p class="dialogue">
+                    Kai menggeleng. "Jangan cari tahu. Lanjut."
+                </p>
+
+
+                <p>
+                    Mereka akhirnya mencapai lantai lima.
+                </p>
+
+
+                <p>
+                    Koridor terlihat sepi. Lampunya masih menyala dan tidak
+                    ada tanda-tanda kerusakan.
+                </p>
+
+
+                <p>
+                    Noah melihat nomor kamar satu per satu.
+                </p>
+
+
+                <p class="dialogue">
+                    "507..."
+                </p>
+
+
+                <p>
+                    Mereka terus berjalan.
+                </p>
+
+
+                <p class="dialogue">
+                    "509..."
+                </p>
+
+
+                <p>
+                    Kemudian Noah berhenti.
+                </p>
+
+
+                <p class="dialogue">
+                    "511."
+                </p>
+
+
+                <p>
+                    Ia memasukkan kunci ke pintu dan memutarnya.
+                </p>
+
+
+                <p>
+                    Klik.
+                </p>
+
+
+                <p>
+                    Pintu terbuka.
+                </p>
+
+
+                <p class="dialogue">
+                    "Masuk."
+                </p>
+
+
+                <p>
+                    Mereka langsung masuk satu per satu. Noah menjadi orang
+                    terakhir sebelum menutup pintu dan menguncinya.
+                </p>
+
+
+                <p>
+                    Beberapa detik kemudian, suara langkah berat terdengar
+                    dari tangga.
+                </p>
+
+
+                <p>
+                    Semua orang membeku.
+                </p>
+
+
+                <p class="dialogue">
+                    Ren menatap pintu. "Dia sampai."
+                </p>
+
+
+                <p>
+                    Kai memberi isyarat agar semuanya diam.
+                </p>
+
+
+                <p>
+                    Langkah itu berhenti di lantai lima.
+                </p>
+
+
+                <p>
+                    Tidak ada yang bergerak.
+                </p>
+
+
+                <p>
+                    Kemudian terdengar suara sesuatu menggesek pintu.
+                </p>
+
+
+                <p>
+                    Ren hampir mengeluarkan suara, tetapi Rin cepat menatapnya
+                    dan memberi isyarat untuk diam.
+                </p>
+
+
+                <p>
+                    Beberapa detik berlalu.
+                </p>
+
+
+                <p>
+                    Lalu suara itu perlahan menjauh.
+                </p>
+
+
+                <p>
+                    Langkah kaki kembali terdengar di koridor dan akhirnya
+                    menghilang ke arah tangga.
+                </p>
+
+
+                <p>
+                    Tidak ada yang langsung bicara.
+                </p>
+
+
+                <p class="dialogue">
+                    Noah mengembuskan napas panjang.
+                    "Gw nggak bakal pernah lagi bilang kuliah itu membosankan."
+                </p>
+
+
+                <p class="dialogue">
+                    Ren menatapnya. "Serius? Itu yang lu pikirin sekarang?"
+                </p>
+
+
+                <p class="dialogue">
+                    "Gw lagi berusaha nggak panik."
+                </p>
+
+
+                <p>
+                    Rin akhirnya tertawa kecil meskipun wajahnya masih tegang.
+                </p>
+
+
+                <p class="dialogue">
+                    Kai berjalan menjauh dari pintu.
+                    "Yang penting kita masih hidup."
+                </p>
+
+
+                <p>
+                    Mereka kemudian mulai memeriksa kamar 511 untuk memastikan
+                    tidak ada sesuatu yang berbahaya di dalam. Kamar tersebut
+                    ternyata kosong. Ada ruang tamu kecil, dapur sederhana,
+                    beberapa kursi, dan dua kamar tidur.
+                </p>
+
+
+                <p class="dialogue">
+                    Ren langsung duduk di sofa.
+                    "Gw nggak peduli ini kamar siapa. Gw mau duduk dulu."
+                </p>
+
+
+                <p class="dialogue">
+                    Noah berjalan ke jendela dan melihat ke bawah.
+                    "Jangan terlalu dekat sama jendela."
+                </p>
+
+
+                <p class="dialogue">
+                    Rin sudah lebih dulu memeriksa tirai. "Kenapa?"
+                </p>
+
+
+                <p class="dialogue">
+                    "Kalau ada makhluk di luar, kita nggak tahu mereka bisa
+                    lihat sampai sini atau nggak."
+                </p>
+
+
+                <p>
+                    Rin mengangguk dan menutup tirai sebagian.
+                </p>
+
+
+                <p>
+                    Kai kemudian mengeluarkan ponselnya.
+                </p>
+
+
+                <p class="dialogue">
+                    "Kita harus hubungi bantuan."
+                </p>
+
+
+                <p>
+                    Ia mencoba mencari sinyal.
+                </p>
+
+
+                <p>
+                    Tidak ada.
+                </p>
+
+
+                <p>
+                    Noah mencoba menghubungi keluarganya, tetapi panggilannya
+                    tidak tersambung. Ren mencoba beberapa nomor darurat,
+                    namun hasilnya sama.
+                </p>
+
+
+                <p>
+                    Rin kemudian mencoba dari dekat jendela. Setelah beberapa
+                    kali percobaan, akhirnya muncul satu garis sinyal.
+                </p>
+
+
+                <p class="dialogue">
+                    "Gw dapat."
+                </p>
+
+
+                <p>
+                    Ia langsung menghubungi layanan darurat.
+                </p>
+
+
+                <p>
+                    Setelah beberapa kali menunggu, panggilan tersebut akhirnya
+                    tersambung.
+                </p>
+
+
+                <p>
+                    Mereka memberikan lokasi apartemen dan menjelaskan keadaan
+                    mereka. Operator meminta mereka tetap berada di dalam
+                    gedung dan tidak mencoba keluar sampai tim evakuasi datang.
+                </p>
+
+
+                <p class="dialogue">
+                    "Tim evakuasi akan datang besok pagi," kata operator melalui
+                    telepon. "Kalian harus menuju rooftop pukul tujuh. Tim akan
+                    menjemput melalui jalur udara."
+                </p>
+
+
+                <p class="dialogue">
+                    "Besok pagi?" Rin memastikan.
+                </p>
+
+
+                <p class="dialogue">
+                    "Ya. Jangan keluar dari tempat kalian sekarang kecuali ada
+                    keadaan darurat."
+                </p>
+
+
+                <p>
+                    Panggilan berakhir.
+                </p>
+
+
+                <p>
+                    Rin menurunkan ponselnya.
+                </p>
+
+
+                <p class="dialogue">
+                    "Mereka bakal datang jam tujuh."
+                </p>
+
+
+                <p class="dialogue">
+                    Noah mengangguk. "Berarti kita tinggal bertahan sampai pagi."
+                </p>
+
+
+                <p class="dialogue">
+                    Ren menyandarkan kepalanya ke sofa.
+                    "Gampang ngomongnya."
+                </p>
+
+
+                <p>
+                    Kai melihat ke arah jendela yang tertutup tirai.
+                </p>
+
+
+                <p>
+                    Di luar, suara sirene masih terdengar dari berbagai arah.
+                    Sesekali terdengar suara benturan jauh diikuti teriakan
+                    orang-orang.
+                </p>
+
+
+                <p>
+                    Pagi tadi semuanya masih normal.
+                </p>
+
+
+                <p>
+                    Sekarang mereka terjebak di kamar 511, menunggu bantuan
+                    datang dari udara sementara sesuatu yang tidak mereka
+                    pahami berkeliaran di luar.
+                </p>
+
+
+                <p>
+                    Kai berjalan mendekati jendela dan membuka tirai sedikit.
+                </p>
+
+
+                <p>
+                    Dari lantai lima, keadaan kota terlihat jauh lebih jelas.
+                </p>
+
+
+                <p>
+                    Asap mulai membubung dari beberapa tempat. Beberapa
+                    kendaraan terbengkalai di tengah jalan. Lampu-lampu kota
+                    masih menyala, tetapi di antara gedung-gedung yang jauh
+                    terlihat beberapa bagian kota sudah gelap.
+                </p>
+
+
+                <p>
+                    Kai menatap semuanya tanpa berkata-kata.
+                </p>
+
+
+                <p>
+                    Ia masih belum tahu apa sebenarnya makhluk-makhluk itu.
+                </p>
+
+
+                <p>
+                    Ia juga belum tahu dari mana mereka datang atau kenapa
+                    mereka menyerang manusia.
+                </p>
+
+
+                <p>
+                    Yang Kai tahu hanya satu.
+                </p>
+
+
+                <p>
+                    Hari ini bukan lagi hari biasa.
+                </p>
+
+
+                <p>
+                    Dan apa yang terjadi di Halden hanyalah awal dari sesuatu
+                    yang jauh lebih besar.
+                </p>
+
+
+                <p class="chapter-ending">
+                    INI SEMUA HANYALAH AWAL
+                </p>
+
+            </article>
+
+
+            <!-- NAVIGASI -->
+
+            <div class="reading-navigation">
+
+
+                <button
+                    class="nav-chapter"
+                    onclick="openNovel()">
+
+                    ← DAFTAR CHAPTER
+
+                </button>
+
+
+                <button
+                    class="nav-chapter disabled">
+
+                    CHAPTER 02 →
+                    <br>
+                    <small>
+                        SEGERA HADIR
+                    </small>
+
+                </button>
+
+
+            </div>
+
+        </main>
+
+
+        <footer>
+
+            <div class="footer-logo">
+                WAR AT THE END
+            </div>
+
+            <p>
+                © 2026 Zikri. All rights reserved.
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        function hideAllPages() {
+
+            document
+                .querySelectorAll(".page")
+                .forEach(function(page) {
+
+                    page.classList.remove("active");
+
+                });
+
+            window.scrollTo(0, 0);
+
+        }
+
+
+        function openNovel() {
+
+            hideAllPages();
+
+            document
+                .getElementById("novelPage")
+                .classList.add("active");
+
+            window.scrollTo(0, 0);
+
+        }
+
+
+        function openChapter1() {
+
+            hideAllPages();
+
+            document
+                .getElementById("chapter1Page")
+                .classList.add("active");
+
+            window.scrollTo(0, 0);
+
+        }
+
+
+        function goHome() {
+
+            hideAllPages();
+
+            document
+                .getElementById("homePage")
+                .classList.add("active");
+
+            window.scrollTo(0, 0);
+
+        }
+
+    </script>
+
+</body>
+</html>
+```

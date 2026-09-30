@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
     <title>War at the End</title>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap');
 
         * {
             margin: 0;
@@ -131,15 +131,59 @@
         }
 
         .hero h1 {
-            font-size: clamp(60px, 10vw, 140px);
+            font-family: 'Orbitron', sans-serif;
 
-            line-height: 0.9;
+            font-size: clamp(45px, 8vw, 110px);
 
-            font-weight: 800;
+            line-height: 1.1;
 
-            letter-spacing: -6px;
+            font-weight: 700;
+
+            letter-spacing: 0.045em;
+
+            word-spacing: 0.08em;
 
             margin: 0;
+        }
+
+        /* =========================
+           PRIMARY BUTTON
+        ========================= */
+
+        .primary-button {
+            display: inline-block;
+
+            margin-top: 40px;
+
+            padding: 15px 30px;
+
+            border: 1px solid #1683ff;
+
+            background: #1683ff;
+
+            color: #ffffff;
+
+            font-family: 'Inter', sans-serif;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .primary-button:hover {
+            background: transparent;
+
+            color: #1683ff;
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 8px 25px rgba(22, 131, 255, 0.15);
         }
 
         .hero-line {
@@ -718,9 +762,17 @@
             }
 
             .hero h1 {
-                font-size: 60px;
+                font-size: 45px;
 
-                letter-spacing: -3px;
+                letter-spacing: 0.035em;
+
+                word-spacing: 0.05em;
+            }
+
+            .primary-button {
+                margin-top: 35px;
+
+                padding: 14px 25px;
             }
 
             .section {
@@ -782,23 +834,23 @@
             <nav>
 
                 <a href="#home">
-                    Home
+                    Beranda
                 </a>
 
                 <a href="#formats">
-                    Works
+                    Karya
                 </a>
 
                 <a href="#synopsis">
-                    Synopsis
+                    Sinopsis
                 </a>
 
                 <a href="#characters">
-                    Characters
+                    Karakter
                 </a>
 
                 <a href="#about">
-                    About
+                    Tentang
                 </a>
 
             </nav>
@@ -816,6 +868,14 @@
                     WAR AT THE END
                 </h1>
 
+                <button
+                    class="primary-button"
+                    onclick="openNovel()">
+
+                    MULAI MEMBACA
+
+                </button>
+
             </div>
 
             <div class="hero-line"></div>
@@ -823,7 +883,7 @@
         </section>
 
 
-        <!-- WORKS -->
+        <!-- KARYA -->
 
         <section id="formats" class="section">
 
@@ -831,7 +891,7 @@
 
                 <span>01</span>
 
-                <h2>WORKS</h2>
+                <h2>KARYA</h2>
 
             </div>
 
@@ -895,7 +955,7 @@
                 </div>
 
 
-                <!-- COMIC -->
+                <!-- KOMIK -->
 
                 <div class="format-card disabled">
 
@@ -906,7 +966,7 @@
                     <div>
 
                         <h3>
-                            COMIC
+                            KOMIK
                         </h3>
 
                         <p>
@@ -927,7 +987,7 @@
         </section>
 
 
-        <!-- SYNOPSIS -->
+        <!-- SINOPSIS -->
 
         <section id="synopsis" class="section">
 
@@ -935,7 +995,7 @@
 
                 <span>02</span>
 
-                <h2>SYNOPSIS</h2>
+                <h2>SINOPSIS</h2>
 
             </div>
 
@@ -987,7 +1047,7 @@
         </section>
 
 
-        <!-- CHARACTER PROFILE -->
+        <!-- PROFIL KARAKTER -->
 
         <section id="characters" class="section">
 
@@ -995,7 +1055,7 @@
 
                 <span>03</span>
 
-                <h2>CHARACTER PROFILE</h2>
+                <h2>PROFIL KARAKTER</h2>
 
             </div>
 
@@ -1003,7 +1063,7 @@
             <div class="character-container">
 
 
-                <!-- HUMAN -->
+                <!-- MANUSIA -->
 
                 <div
                     class="character-category"
@@ -1016,7 +1076,7 @@
                     <div class="character-category-content">
 
                         <h3>
-                            HUMAN
+                            MANUSIA
                         </h3>
 
                         <p>
@@ -1070,7 +1130,7 @@
         </section>
 
 
-        <!-- ABOUT THE CREATOR -->
+        <!-- TENTANG PENULIS -->
 
         <section id="about" class="section about-section">
 
@@ -1078,7 +1138,7 @@
 
                 <span>04</span>
 
-                <h2>ABOUT THE CREATOR</h2>
+                <h2>TENTANG PENULIS</h2>
 
             </div>
 
@@ -1086,7 +1146,7 @@
             <div class="about-content">
 
                 <p class="about-label">
-                    CREATED AND WRITTEN BY
+                    DIBUAT DAN DITULIS OLEH
                 </p>
 
                 <h2>
@@ -1137,7 +1197,7 @@
             <nav>
 
                 <a href="#" onclick="goHome()">
-                    Home
+                    Beranda
                 </a>
 
             </nav>
@@ -1154,7 +1214,7 @@
                     class="back-button"
                     onclick="goHome()">
 
-                    ← BACK TO HOME
+                    ← KEMBALI KE BERANDA
 
                 </button>
 
@@ -1277,7 +1337,7 @@
                     class="back-button"
                     onclick="openNovel()">
 
-                    ← BACK TO CHAPTER LIST
+                    ← KEMBALI KE DAFTAR CHAPTER
 
                 </button>
 
@@ -2168,11 +2228,6 @@
                 </p>
 
 
-                <p>
-                    Rin menelan ludah.
-                </p>
-
-
                 <p class="dialogue">
                     "Dia lihat kita."
                 </p>
@@ -2802,7 +2857,7 @@
                     class="nav-chapter"
                     onclick="openNovel()">
 
-                    ← CHAPTER LIST
+                    ← DAFTAR CHAPTER
 
                 </button>
 
@@ -2902,14 +2957,14 @@
 
         function openHuman() {
 
-            alert("Human Character Profile — Coming Soon");
+            alert("Profil Karakter Manusia — Segera Hadir");
 
         }
 
 
         function openAbyssal() {
 
-            alert("Abyssal Character Profile — Coming Soon");
+            alert("Profil Karakter Abyssal — Segera Hadir");
 
         }
 

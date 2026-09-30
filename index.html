@@ -1,6 +1,5 @@
-```html
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,12 +92,15 @@
 
             display: flex;
             align-items: center;
+            justify-content: center;
 
             padding: 120px 10% 80px;
 
             position: relative;
 
             overflow: hidden;
+
+            text-align: center;
         }
 
         .hero::before {
@@ -106,90 +108,38 @@
 
             position: absolute;
 
-            width: 500px;
-            height: 500px;
+            width: 550px;
+            height: 550px;
 
-            right: -150px;
-            top: 100px;
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
 
             background: #1683ff;
 
             opacity: 0.08;
 
-            filter: blur(100px);
+            filter: blur(120px);
 
             border-radius: 50%;
         }
 
         .hero-content {
-            max-width: 800px;
-
             position: relative;
             z-index: 2;
         }
 
-        .small-title {
-            color: #1683ff;
-
-            font-size: 12px;
-
-            letter-spacing: 4px;
-
-            margin-bottom: 25px;
-        }
-
         .hero h1 {
-            font-size: clamp(60px, 9vw, 130px);
+            font-size: clamp(60px, 10vw, 140px);
 
-            line-height: 0.85;
+            line-height: 0.9;
 
             font-weight: 800;
 
-            letter-spacing: -5px;
+            letter-spacing: -6px;
 
-            margin-bottom: 35px;
-        }
-
-        .hero-description {
-            max-width: 550px;
-
-            color: #8d99a8;
-
-            line-height: 1.8;
-
-            font-size: 15px;
-
-            margin-bottom: 40px;
-        }
-
-        .main-button {
-            display: inline-block;
-
-            padding: 15px 25px;
-
-            color: #ffffff;
-
-            background: #1683ff;
-
-            border: none;
-
-            text-decoration: none;
-
-            font-size: 12px;
-
-            font-weight: 700;
-
-            letter-spacing: 1px;
-
-            cursor: pointer;
-
-            transition: 0.3s;
-        }
-
-        .main-button:hover {
-            background: #ffffff;
-            color: #05070a;
-            transform: translateY(-3px);
+            margin: 0;
         }
 
         .hero-line {
@@ -219,16 +169,19 @@
             display: flex;
 
             align-items: center;
+            justify-content: center;
 
-            gap: 20px;
+            gap: 15px;
 
             margin-bottom: 60px;
+
+            text-align: center;
         }
 
         .section-title span {
             color: #1683ff;
 
-            font-size: 12px;
+            font-size: 11px;
 
             font-weight: 700;
         }
@@ -240,7 +193,7 @@
         }
 
         /* =========================
-           FORMAT
+           WORKS / FORMAT
         ========================= */
 
         .format-container {
@@ -249,10 +202,14 @@
             grid-template-columns: repeat(3, 1fr);
 
             gap: 15px;
+
+            max-width: 1100px;
+
+            margin: auto;
         }
 
         .format-card {
-            min-height: 190px;
+            min-height: 210px;
 
             padding: 30px;
 
@@ -319,6 +276,10 @@
 
         .synopsis {
             max-width: 850px;
+
+            margin: auto;
+
+            text-align: center;
         }
 
         .synopsis p {
@@ -352,85 +313,97 @@
         }
 
         /* =========================
-           CHARACTERS
+           CHARACTER PROFILE
         ========================= */
 
         .character-container {
             display: grid;
 
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(2, 1fr);
 
-            gap: 15px;
+            gap: 20px;
+
+            max-width: 1100px;
+
+            margin: auto;
         }
 
-        .character-card {
+        .character-category {
+            min-height: 300px;
+
+            padding: 45px;
+
             background: #080c11;
 
             border: 1px solid #1b2633;
 
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            cursor: pointer;
+
             transition: 0.3s;
         }
 
-        .character-card:hover {
+        .character-category:hover {
             border-color: #1683ff;
 
             transform: translateY(-5px);
         }
 
-        .character-image {
-            height: 330px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            background: #0d1218;
-
-            color: #303b48;
+        .character-category-number {
+            color: #1683ff;
 
             font-size: 11px;
 
             letter-spacing: 2px;
         }
 
-        .character-info {
-            padding: 20px;
+        .character-category-content {
+            text-align: center;
         }
 
-        .character-info p {
+        .character-category h3 {
+            font-size: 35px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 15px;
+        }
+
+        .character-category p {
+            color: #707c89;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+        .character-category-arrow {
+            align-self: flex-end;
+
             color: #1683ff;
 
-            font-size: 10px;
-
-            margin-bottom: 10px;
-        }
-
-        .character-info h3 {
-            font-size: 16px;
-
-            margin-bottom: 8px;
-        }
-
-        .character-info span {
-            color: #697583;
-
-            font-size: 9px;
-
-            letter-spacing: 1px;
+            font-size: 22px;
         }
 
         /* =========================
-           ABOUT
+           ABOUT CREATOR
         ========================= */
 
         .about-section {
             min-height: 500px;
+
+            text-align: center;
         }
 
         .about-content {
-            max-width: 650px;
+            max-width: 700px;
+
+            margin: auto;
         }
 
         .about-label {
@@ -732,7 +705,7 @@
             }
 
             .character-container {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
             }
 
         }
@@ -754,8 +727,14 @@
                 padding: 80px 7%;
             }
 
-            .character-container {
-                grid-template-columns: 1fr;
+            .character-category {
+                min-height: 250px;
+
+                padding: 30px;
+            }
+
+            .character-category h3 {
+                font-size: 28px;
             }
 
             .reading-content {
@@ -791,6 +770,7 @@
 
     <div id="homePage" class="page active">
 
+
         <!-- NAVBAR -->
 
         <header class="navbar">
@@ -800,11 +780,27 @@
             </div>
 
             <nav>
-                <a href="#home">Beranda</a>
-                <a href="#formats">Karya</a>
-                <a href="#synopsis">Sinopsis</a>
-                <a href="#characters">Karakter</a>
-                <a href="#about">Tentang</a>
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#formats">
+                    Works
+                </a>
+
+                <a href="#synopsis">
+                    Synopsis
+                </a>
+
+                <a href="#characters">
+                    Characters
+                </a>
+
+                <a href="#about">
+                    About
+                </a>
+
             </nav>
 
         </header>
@@ -816,25 +812,9 @@
 
             <div class="hero-content">
 
-                <p class="small-title">
-                    CERITA ORIGINAL
-                </p>
-
                 <h1>
-                    WAR<br>
-                    AT THE END
+                    WAR AT THE END
                 </h1>
-
-                <p class="hero-description">
-                    Ketika umat manusia menghadapi musuh yang tidak pernah
-                    mereka kenal, perang terbesar dalam sejarah akhirnya dimulai.
-                </p>
-
-                <button
-                    class="main-button"
-                    onclick="openNovel()">
-                    MULAI MEMBACA
-                </button>
 
             </div>
 
@@ -843,7 +823,7 @@
         </section>
 
 
-        <!-- FORMAT -->
+        <!-- WORKS -->
 
         <section id="formats" class="section">
 
@@ -851,7 +831,7 @@
 
                 <span>01</span>
 
-                <h2>KARYA</h2>
+                <h2>WORKS</h2>
 
             </div>
 
@@ -926,7 +906,7 @@
                     <div>
 
                         <h3>
-                            KOMIK
+                            COMIC
                         </h3>
 
                         <p>
@@ -947,7 +927,7 @@
         </section>
 
 
-        <!-- SINOPSIS -->
+        <!-- SYNOPSIS -->
 
         <section id="synopsis" class="section">
 
@@ -955,7 +935,7 @@
 
                 <span>02</span>
 
-                <h2>SINOPSIS</h2>
+                <h2>SYNOPSIS</h2>
 
             </div>
 
@@ -1007,7 +987,7 @@
         </section>
 
 
-        <!-- CHARACTERS -->
+        <!-- CHARACTER PROFILE -->
 
         <section id="characters" class="section">
 
@@ -1015,7 +995,7 @@
 
                 <span>03</span>
 
-                <h2>KARAKTER</h2>
+                <h2>CHARACTER PROFILE</h2>
 
             </div>
 
@@ -1023,93 +1003,63 @@
             <div class="character-container">
 
 
-                <div class="character-card">
+                <!-- HUMAN -->
 
-                    <div class="character-image">
-                        IMAGE
+                <div
+                    class="character-category"
+                    onclick="openHuman()">
+
+                    <div class="character-category-number">
+                        01
                     </div>
 
-                    <div class="character-info">
-
-                        <p>01</p>
+                    <div class="character-category-content">
 
                         <h3>
-                            KAI ARASHIRO
+                            HUMAN
                         </h3>
 
-                        <span>
-                            PROTAGONIS
-                        </span>
+                        <p>
+                            Profil karakter dari pihak manusia,
+                            termasuk latar belakang, kepribadian,
+                            peran, kemampuan, dan hubungan mereka.
+                        </p>
 
+                    </div>
+
+                    <div class="character-category-arrow">
+                        →
                     </div>
 
                 </div>
 
 
-                <div class="character-card">
+                <!-- ABYSSAL -->
 
-                    <div class="character-image">
-                        IMAGE
+                <div
+                    class="character-category"
+                    onclick="openAbyssal()">
+
+                    <div class="character-category-number">
+                        02
                     </div>
 
-                    <div class="character-info">
-
-                        <p>02</p>
+                    <div class="character-category-content">
 
                         <h3>
-                            RIN ASAKURA
+                            ABYSSAL
                         </h3>
 
-                        <span>
-                            RECON / SNIPER
-                        </span>
+                        <p>
+                            Profil makhluk Abyssal,
+                            termasuk kemampuan, peran, latar belakang,
+                            dan informasi penting lainnya.
+                        </p>
 
                     </div>
 
-                </div>
-
-
-                <div class="character-card">
-
-                    <div class="character-image">
-                        IMAGE
-                    </div>
-
-                    <div class="character-info">
-
-                        <p>03</p>
-
-                        <h3>
-                            NOAH MILLER
-                        </h3>
-
-                        <span>
-                            FRONTLINE
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="character-card">
-
-                    <div class="character-image">
-                        IMAGE
-                    </div>
-
-                    <div class="character-info">
-
-                        <p>04</p>
-
-                        <h3>
-                            REN HARUMA
-                        </h3>
-
-                        <span>
-                            COMBAT MEDIC
-                        </span>
-
+                    <div class="character-category-arrow">
+                        →
                     </div>
 
                 </div>
@@ -1120,7 +1070,7 @@
         </section>
 
 
-        <!-- ABOUT -->
+        <!-- ABOUT THE CREATOR -->
 
         <section id="about" class="section about-section">
 
@@ -1128,7 +1078,7 @@
 
                 <span>04</span>
 
-                <h2>TENTANG</h2>
+                <h2>ABOUT THE CREATOR</h2>
 
             </div>
 
@@ -1136,7 +1086,7 @@
             <div class="about-content">
 
                 <p class="about-label">
-                    DIBUAT DAN DITULIS OLEH
+                    CREATED AND WRITTEN BY
                 </p>
 
                 <h2>
@@ -1185,9 +1135,11 @@
             </div>
 
             <nav>
+
                 <a href="#" onclick="goHome()">
-                    Beranda
+                    Home
                 </a>
+
             </nav>
 
         </header>
@@ -1202,7 +1154,7 @@
                     class="back-button"
                     onclick="goHome()">
 
-                    ← KEMBALI KE BERANDA
+                    ← BACK TO HOME
 
                 </button>
 
@@ -1325,7 +1277,7 @@
                     class="back-button"
                     onclick="openNovel()">
 
-                    ← KEMBALI KE DAFTAR CHAPTER
+                    ← BACK TO CHAPTER LIST
 
                 </button>
 
@@ -2850,7 +2802,7 @@
                     class="nav-chapter"
                     onclick="openNovel()">
 
-                    ← DAFTAR CHAPTER
+                    ← CHAPTER LIST
 
                 </button>
 
@@ -2860,6 +2812,7 @@
 
                     CHAPTER 02 →
                     <br>
+
                     <small>
                         SEGERA HADIR
                     </small>
@@ -2946,8 +2899,21 @@
 
         }
 
+
+        function openHuman() {
+
+            alert("Human Character Profile — Coming Soon");
+
+        }
+
+
+        function openAbyssal() {
+
+            alert("Abyssal Character Profile — Coming Soon");
+
+        }
+
     </script>
 
 </body>
 </html>
-```
